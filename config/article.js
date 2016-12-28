@@ -1,21 +1,20 @@
 export default () => ({ // eslint-disable-line
 
   // link file UUID
-  id: '',
+  id: '234ab1dc-ccf9-11e6-864f-20dcb35cede2',
 
   // canonical URL of the published page
   // https://ig.ft.com/sites/quiz/psychology-of-money get filled in by the ./configure script
-  url: 'https://ig.ft.com/sites/quiz/psychology-of-money',
+  url: 'https://ig.ft.com/sites/quiz/psychology-of-money/',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Politics and the English Language',
+  headline: 'What is your financial personality type?',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Political language is designed to make lies sound truthful' +
-           'and murder respectable, and to give an appearance of solidity to pure wind',
+  summary: 'Knowing our financial psychology stops money - and businesses - controlling us\n',
 
   topic: {
     name: 'Starter Kit',
@@ -38,8 +37,8 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Naomi Rovnick', url: 'https://www.ft.com/stream/authorsId/Q0ItMDMzNDMwNg==-QXV0aG9ycw==' },
+    { name: 'David Blood', url: 'https://twitter.com/davidcblood' },
   ],
 
   // Appears in the HTML <title>
