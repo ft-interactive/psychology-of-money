@@ -92,7 +92,7 @@ class Question extends Component {
     return (
       <div
         className={`question${activeClass}${answeredClass}`}
-        id={`${this.props.questionId}`}
+        id={`q${this.props.questionIndex}`}
         ref={node => { this.node = node; }}
       >
         <h2 className="o-typography-subhead--crosshead">
@@ -116,7 +116,6 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-  questionId: React.PropTypes.string,
   questionIndex: React.PropTypes.number,
   active: React.PropTypes.bool,
   questionType: React.PropTypes.string,

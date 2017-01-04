@@ -33,6 +33,7 @@ class App extends Component {
     };
     this.setQuestions = this.setQuestions.bind(this);
     this.updateProgress = this.updateProgress.bind(this);
+    this.scrollToNext = this.scrollToNext.bind(this);
     this.updateScore = this.updateScore.bind(this);
     this.calculateResult = this.calculateResult.bind(this);
   }
@@ -53,6 +54,8 @@ class App extends Component {
   updateProgress(num) {
     if (num < this.state.questions.length) {
       this.setState({ activeQuestion: num });
+
+      this.scrollToNext();
     } else {
       this.setState({
         activeQuestion: null,
@@ -63,6 +66,12 @@ class App extends Component {
         this.calculateResult();
       }, 1000);
     }
+  }
+
+  scrollToNext() {
+    const nextQuestion = this.state.activeQuestion + 1;
+
+    document.getElementById(`q${nextQuestion}`).scrollIntoView({ behavior: 'smooth' });
   }
 
   updateScore(category, value) {
@@ -111,7 +120,6 @@ class App extends Component {
       .map((question, i) =>
         <Question
           key={question.meta.qid}
-          questionId={question.meta.qid}
           questionIndex={i}
           active={i === this.state.activeQuestion}
           questionType={question.meta.type}
@@ -133,27 +141,27 @@ class App extends Component {
     switch (true) {
       case this.state.result === 'fitbit':
         userType = 'the ‘Fitbit financier’';
-        typeDesc = '';
+        typeDesc = 'Go on, admit it. You track your spending, investments and pension about as often as someone training for an extreme sporting event measures their calorie intake, resting heart rate and sleep quality. You like to use comparison sites, consider some people on money discussion forums to have become your friends friends, and like to download apps that help you understand financial products and remind you when to remortgage. Keeping track of one’s money is a good thing. But one underlying reason for wanting very strong control of your finances is that you may have lost control of other areas of your life. Perhaps you are facing something unpredictable, like a job move or retirement?'; // eslint-disable-line
         break;
       case this.state.result === 'anxious':
         userType = 'the ‘anxious investor’';
-        typeDesc = '';
+        typeDesc = 'You check or change your investments several times a month. Quite possibly most days. The anticipation of making a trade or checking your portfolio boosts your mood, although after it is executed you are anxious about what the results will be. According to behavioural finance expert Greg B. Davies, that is a brain chemistry loop that keeps amateur investors trading through periods when they really should have bought and held. Some move on to chasing the highs and suffering the lows of leveraged spread betting. Mr Davies observes that many DIY investors believe they are better than the average. However, they often have no idea how their portfolio is doing compared to an accepted benchmark, or even what this benchmark should be. If you fear this is you, see a financial adviser or chartered financial planner for a portfolio MOT.'; // eslint-disable-line
         break;
       case this.state.result === 'social':
         userType = 'the ‘social value spender’';
-        typeDesc = '';
+        typeDesc = 'Ever had a row with a loved one that you felt better about after buying them a gift? Do you shop online when you feel lonely? If so, you may be what psychologists call a social value spender. You use money as a tool to make yourself feel better. The extreme manifestation of this behaviour is shopping addiction, where sufferers may have unopened packages hidden under beds and in toilet cisterns, or simply put their purchases on eBay straight away. At the moderate end of the spectrum, you may find yourself lured by retail advertising tactics that link consumption of small, luxury items to a mood boost. Scented candle, anyone?'; // eslint-disable-line
         break;
       case this.state.result === 'cash':
         userType = 'the ‘cash splasher’';
-        typeDesc = '';
+        typeDesc = 'Do you always get the bill? More importantly, do you always get the bill while making it clear to others that you were then one who paid? Cash splashers view themselves as generous, but they also use money to show people that they have achieved enough success in life for spending freely on others not to make a dent. They may also spend on items or commitments that they could easily do without, from club memberships to expensive cars, to show others that they have done well. It is always nice to be a bit of a splasher, but do keep it in check.'; // eslint-disable-line
         break;
       case this.state.result === 'hoarder':
         userType = 'the ‘hoarder’';
-        typeDesc = '';
+        typeDesc = 'To you, money represents security. You like to see enormous piles of it in your bank account. You are uncomfortable with investing because moves money out of sight and into that unknown dimension known as “the markets”, where it could lose value. You find shopping horrid. If you are married, you will question your spouse’s spending. If you have teenage children, you also have a wardrobe of clothes that are older than them. In a divorce, you may fight for more of the spoils than you need, for fear of being left short. And if you retire comfortably, you will still deny yourself luxuries, perhaps while also fretting uncontrollably about inheritance tax. If you find yourself hoarding beyond what is necessary, try and recalibrate how you conceptualise money. It is not tangible, but abstract. It has been variously described as the future promise of having something, a legal obligation or simply a unit of measurement. So if you do not use it, it may as well not exist.'; // eslint-disable-line
         break;
       case this.state.result === 'ostrich':
         userType = 'the ‘ostrich’';
-        typeDesc = '';
+        typeDesc = 'Money? Yawn. You hate opening bills. Pensions and Isas are dull. Quite possibly you once paid a monthly direct debit for a washing machine that was installed in your student house, before canceling it a decade later. At the root of your inactivity is anxiety. You see yourself as innately bad with numbers. So you fear that making any decision about money could be worse than doing nothing. It is not a rational fear. The good news is that, if you have taken this test, which involves thinking about money, you are not an incurable ostrich. Set aside an hour a fortnight, at first, to examine your finances. It will get easier with time.'; // eslint-disable-line
         break;
       default:
         userType = 'calculating…';
