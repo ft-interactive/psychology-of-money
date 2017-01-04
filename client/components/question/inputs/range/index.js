@@ -49,7 +49,6 @@ class Range extends Component {
       (this.props.increments - 1);
     const center = (width / 2);
     const rangeOverlayPosition = center + (num * incrementWidth) + (num * diffFactor);
-    console.log(this.state.value * 2);
 
     this.setState({
       width,

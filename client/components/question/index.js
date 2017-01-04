@@ -91,8 +91,8 @@ class Question extends Component {
 
     return (
       <div
-        ref={node => { this.node = node; }}
         className={`question${activeClass}${answeredClass}`}
+        ref={node => { this.node = node; }}
       >
         <h2 className="o-typography-subhead--crosshead">
           {this.props.questionIndex + 1}.

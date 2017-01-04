@@ -57,7 +57,9 @@ class App extends Component {
         complete: true,
       });
 
-      this.calculateResult();
+      setTimeout(() => {
+        this.calculateResult();
+      }, 1000);
     }
   }
 
@@ -112,9 +114,9 @@ class App extends Component {
           active={i === this.state.activeQuestion}
           questionType={question.meta.type}
           questionText={question.text}
-          options={Object.keys(question.options).map(option =>
-              question.options[option]
-            ).filter(option => option !== null)}
+          options={Object.keys(question.options)
+            .map(option => question.options[option])
+            .filter(option => option !== null)}
           scoreCategory={question.meta.scorecategory}
           // responsesData={question.responses}
           updateProgress={this.updateProgress}
@@ -163,31 +165,32 @@ class App extends Component {
               <h2>Your financial personality type: {userType}</h2>
 
               <p>{typeDesc}</p>
-
-              <p>TKTK chart TKTK</p>
-
-              <a
-                href={`https://twitter.com/intent/tweet?text=How%20well%20do%20you%20really%20know%20your%20country%3F%20My%20${this.state.country}%20rating%20was%20${Math.round(this.state.score)}%25%3B%20see%20how%20you%20compare%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fperils-of-perception%2F2016%2F&via=FT`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button
-                  className="o-buttons o-buttons--big o-buttons--standout"
-                >
-                  Tweet Your Result
-                </button>
-              </a>
             </div>
           }
+
           {this.state.tie &&
             <div>
               <h2>Your financial personality type: inconclusive</h2>
 
               <p>Check the chart below to see how you rated against each of the
                 different financial personality types.</p>
-
-              <p>TKTK chart TKTK</p>
             </div>
+          }
+
+          <p>TKTK chart TKTK</p>
+
+          {!this.state.tie &&
+            <a
+              href={`https://twitter.com/intent/tweet?text=How%20well%20do%20you%20really%20know%20your%20country%3F%20My%20${this.state.country}%20rating%20was%20${Math.round(this.state.score)}%25%3B%20see%20how%20you%20compare%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fperils-of-perception%2F2016%2F&via=FT`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button
+                className="o-buttons o-buttons--big o-buttons--standout"
+              >
+                Tweet Your Result
+              </button>
+            </a>
           }
         </div>
       );
