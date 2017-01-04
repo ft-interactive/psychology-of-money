@@ -1,16 +1,16 @@
 @import 'o-colors/main';
 @import 'components/core/main';
+@import 'components/question/main';
+@import 'components/question/inputs/range/main';
 
-/*
-      TODO: delete this comment
-
-      Write your code here - keep it neat!
-      Split logical parts of you project into components e.g.
-
-      /client
-        - /components
-            - /component-name
-                - styles.scss
-                - index.js
-                - template.html
-*/
+div.results {
+  h2 {
+    margin-top: 0;
+  }
+  button {
+    display: block;
+    width: 100%;
+    max-width: 315px;
+    margin: 38px auto 0;
+  }
+}

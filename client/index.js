@@ -157,9 +157,7 @@ class App extends Component {
 
     if (complete) {
       results = (
-        <div
-          className="results"
-        >
+        <div className="results">
           {!this.state.tie &&
             <div>
               <h2>Your financial personality type: {userType}</h2>
@@ -195,7 +193,7 @@ class App extends Component {
       );
     } else {
       results = (
-        <div>
+        <div className="results">
           <p><em>Answer all 18 questions to calculate your financial personality type.</em></p>
         </div>
       );

@@ -63,8 +63,10 @@ class Question extends Component {
       <Range
         min={rangeMin}
         max={rangeMax}
+        increments={7}
         step={1}
-        thumbSize={28} // Make sure this matches the thumb styling in ./inputs/range/_main.scss
+        thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+        overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
         onSubmit={this.markQuestion}
       />
     );

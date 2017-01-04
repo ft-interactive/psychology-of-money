@@ -9,55 +9,53 @@ class Range extends Component {
       value: 0,
       rangeDisabled: false,
       submitDisabled: false,
-      width: null,
-      increment: null,
-      rangeProgress: 0,
+      incrementWidth: null,
+      // diffFactor is the difference between the thumb width and the range overlay width expressed
+      // as an incremental factor (needed for correct overlay positioning)
+      diffFactor: null,
+      center: null,
       rangeOverlayPosition: null,
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleResize = this.handleResize.bind(this);
   }
 
   componentDidMount() {
-    // const component = this;
-
     this.handleResize();
 
-    // function setInitialValue() {
-    //   const value = Math.floor(component.state.rangeProgress * (component.props.max / 100));
-    //
-    //   component.setState({ value });
-    // }
-    //
-    // setInitialValue();
-
-    // Add window resize event listener
-    window.addEventListener('resize', _.throttle(this.handleResize, 750));
+    window.addEventListener('resize', _.throttle(this.handleResize, 500));
   }
 
   handleChange(value) {
     const inputValue = parseInt(value, 10);
-    const number = isNaN(inputValue) ? this.props.max / 2 : inputValue;
-    const rangeProgress = Math.round(100 / (this.props.max / number));
-    const increment = (this.state.width - this.props.thumbSize) / 100;
-    const rangeOverlayPosition = (rangeProgress * increment) - 6;
+    const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
+    const incrementWidth = this.state.incrementWidth;
+    const diffFactor = this.state.diffFactor;
+    const center = this.state.center;
+    const rangeOverlayPosition = center + (num * incrementWidth) + (num * diffFactor);
 
     this.setState({
-      value: number,
+      value: num,
       // submitDisabled: false,
-      rangeProgress,
       rangeOverlayPosition,
     });
   }
 
   handleResize() {
-    const width = this.rangeInput.offsetWidth;
-    const increment = (width - this.props.thumbSize) / 100;
-    const rangeOverlayPosition = (this.state.rangeProgress * increment) - 6;
+    const num = this.state.value;
+    const width = this.rangeInput.offsetWidth - 40;
+    const incrementWidth = width / (this.props.increments - 1);
+    const diffFactor = (this.props.overlayWidth - this.props.thumbWidth) /
+      (this.props.increments - 1);
+    const center = (width / 2);
+    const rangeOverlayPosition = center + (num * incrementWidth) + (num * diffFactor);
+    console.log(this.state.value * 2);
 
     this.setState({
       width,
+      incrementWidth,
+      diffFactor,
+      center,
       rangeOverlayPosition,
     });
   }
@@ -81,8 +79,8 @@ class Range extends Component {
           className="range-input"
         >
           <div
-            ref={node => { this.rangeLabels = node; }}
             className="range-labels"
+            ref={node => { this.rangeLabels = node; }}
           >
             <div className="range-labels-min">
               {this.props.min}
@@ -92,23 +90,25 @@ class Range extends Component {
             </div>
           </div>
 
-          <input
-            ref={node => { this.rangeInput = node; }}
-            type="range"
-            min={this.props.min}
-            max={this.props.max}
-            step={this.props.step}
-            value={this.state.value}
-            onChange={event => this.handleChange(event.target.value)}
-            disabled={this.state.rangeDisabled}
-          />
+          <div className="range-container">
+            <input
+              ref={node => { this.rangeInput = node; }}
+              type="range"
+              min={this.props.min}
+              max={this.props.max}
+              step={this.props.step}
+              value={this.state.value}
+              onChange={event => this.handleChange(event.target.value)}
+              disabled={this.state.rangeDisabled}
+            />
 
-          <output
-            ref={node => { this.output = node; }}
-            style={{ left: this.state.rangeOverlayPosition }}
-          >
-            {this.state.value}
-          </output>
+            <output
+              ref={node => { this.output = node; }}
+              style={{ left: `${this.state.rangeOverlayPosition}px` }}
+            >
+              {this.state.value}
+            </output>
+          </div>
 
           <input
             ref={node => { this.submitButton = node; }}
@@ -126,11 +126,13 @@ class Range extends Component {
 }
 
 Range.propTypes = {
-  onSubmit: React.PropTypes.func,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
+  increments: React.PropTypes.number,
   step: React.PropTypes.number,
-  thumbSize: React.PropTypes.number,
+  thumbWidth: React.PropTypes.number,
+  overlayWidth: React.PropTypes.number,
+  onSubmit: React.PropTypes.func,
 };
 
 export default Range;
