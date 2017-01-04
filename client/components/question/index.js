@@ -92,7 +92,7 @@ class Question extends Component {
     return (
       <div
         className={`question${activeClass}${answeredClass}`}
-        id={`#${this.props.questionId}`}
+        id={`${this.props.questionId}`}
         ref={node => { this.node = node; }}
       >
         <h2 className="o-typography-subhead--crosshead">
