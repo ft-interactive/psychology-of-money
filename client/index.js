@@ -109,7 +109,7 @@ class App extends Component {
       .map((question, i) =>
         <Question
           key={question.meta.qid}
-          // questionId={question.id}
+          questionId={question.meta.qid}
           questionIndex={i}
           active={i === this.state.activeQuestion}
           questionType={question.meta.type}
