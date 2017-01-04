@@ -4,6 +4,8 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 import Question from './components/question';
 
+require('smoothscroll-polyfill').polyfill();
+
 class App extends Component {
   constructor(props) {
     super(props);
