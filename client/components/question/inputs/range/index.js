@@ -107,7 +107,7 @@ class Range extends Component {
                 style={{ left: `${this.state.rangeOverlayPosition}px` }}
                 ref={node => { this.output = node; }}
               >
-                {this.state.value}
+                {this.state.value > 0 ? `+${this.state.value}` : this.state.value}
               </output>
             </div>
 
