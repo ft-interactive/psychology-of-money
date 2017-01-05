@@ -62,6 +62,11 @@ class Range extends Component {
   render() {
     return (
       <div className="input">
+        <link
+          rel="stylesheet"
+          href="//origami-build.ft.com/v2/bundles/css?modules=o-icons@^5.0.0"
+        />
+
         <form
           onSubmit={event => {
             this.setState({
@@ -86,7 +91,7 @@ class Range extends Component {
 
           <div className="range-container">
             <div className="range-labels range-labels-min">
-              {this.props.min}
+              <span>{this.props.min}</span>
             </div>
 
             <div
@@ -112,7 +117,21 @@ class Range extends Component {
             </div>
 
             <div className="range-labels range-labels-max">
-              +{this.props.max}
+              <span>+{this.props.max}</span>
+            </div>
+          </div>
+
+          <div className="sub-labels-container">
+            <div className="sub-labels sub-labels-l">
+              <i className="icon-arrow-left" />
+              <span>Strongly disagree</span>
+            </div>
+            <div className="sub-labels sub-labels-c">
+              <span>Neutral/not sure</span>
+            </div>
+            <div className="sub-labels sub-labels-r">
+              <span>Strongly agree</span>
+              <i className="icon-arrow-right" />
             </div>
           </div>
 
@@ -124,6 +143,7 @@ class Range extends Component {
             ref={node => { this.submitButton = node; }}
           />
         </form>
+
         {/* TODO: Spacer div may be required if using in combination with a chart output */}
         {/* <div className="spacer" /> */}
       </div>
