@@ -39,6 +39,7 @@ export default () => ({ // eslint-disable-line
   byline: [
     { name: 'Naomi Rovnick', url: 'https://www.ft.com/stream/authorsId/Q0ItMDMzNDMwNg==-QXV0aG9ycw==' },
     { name: 'David Blood', url: 'https://twitter.com/davidcblood' },
+    { name: 'Keith Fray', url: 'https://www.ft.com/stream/authorsId/Q0ItMDAwMDc1MQ==-QXV0aG9ycw==' },
   ],
 
   // Appears in the HTML <title>
