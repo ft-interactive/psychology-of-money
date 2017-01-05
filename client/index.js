@@ -109,6 +109,22 @@ class App extends Component {
     }
 
     console.log(scoreSorted);
+
+    const endpoint = 'https://ft-ig-answer-api.herokuapp.com/api/v1';
+    fetch(`${endpoint}/response/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        value: scoreSorted[5].category,
+        submitted: Date.now(),
+        questionId: 29, // Magic number via Answer API.
+        meta: {
+          score: scoreSorted,
+        },
+      }),
+    }).then(res => console.log(res)).catch(e => console.error(e));
   }
 
   render() {
