@@ -77,44 +77,51 @@ class Range extends Component {
           }}
           className="range-input"
         >
-          <div
+          {/* <div
             className="range-labels"
             ref={node => { this.rangeLabels = node; }}
           >
-            <div className="range-labels-min">
-              {this.props.min}
-            </div>
-            <div className="range-labels-max">
-              {this.props.max}
-            </div>
-          </div>
+
+          </div> */}
 
           <div className="range-container">
-            <input
-              ref={node => { this.rangeInput = node; }}
-              type="range"
-              min={this.props.min}
-              max={this.props.max}
-              step={this.props.step}
-              value={this.state.value}
-              onChange={event => this.handleChange(event.target.value)}
-              disabled={this.state.rangeDisabled}
-            />
+            <div className="range-labels range-labels-min">
+              {this.props.min}
+            </div>
 
-            <output
-              ref={node => { this.output = node; }}
-              style={{ left: `${this.state.rangeOverlayPosition}px` }}
+            <div
+              className="range-slider"
             >
-              {this.state.value}
-            </output>
+              <input
+                type="range"
+                min={this.props.min}
+                max={this.props.max}
+                step={this.props.step}
+                value={this.state.value}
+                onChange={event => this.handleChange(event.target.value)}
+                disabled={this.state.rangeDisabled}
+                ref={node => { this.rangeInput = node; }}
+              />
+
+              <output
+                style={{ left: `${this.state.rangeOverlayPosition}px` }}
+                ref={node => { this.output = node; }}
+              >
+                {this.state.value}
+              </output>
+            </div>
+
+            <div className="range-labels range-labels-max">
+              +{this.props.max}
+            </div>
           </div>
 
           <input
-            ref={node => { this.submitButton = node; }}
             type="submit"
             value="SUBMIT ANSWER"
             disabled={this.state.submitDisabled}
             className="o-buttons o-buttons--big o-buttons--standout"
+            ref={node => { this.submitButton = node; }}
           />
         </form>
         {/* TODO: Spacer div may be required if using in combination with a chart output */}
