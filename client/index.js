@@ -129,8 +129,6 @@ class App extends Component {
     } else {
       a.innerHTML = 'Read more »';
     }
-
-    console.log(a);
   }
 
   render() {
