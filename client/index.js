@@ -17,6 +17,7 @@ class App extends Component {
       // selectable on page load
       chooseQuestions: false,
       questions: [],
+      types: [],
       questionsLoaded: false,
       activeQuestion: 0,
       score: [
@@ -36,6 +37,7 @@ class App extends Component {
     this.scrollToNext = this.scrollToNext.bind(this);
     this.updateScore = this.updateScore.bind(this);
     this.calculateResult = this.calculateResult.bind(this);
+    this.showTypeCopy = this.showTypeCopy.bind(this);
   }
 
   componentDidMount() {
@@ -44,9 +46,11 @@ class App extends Component {
 
   setQuestions() {
     const questions = JSON.parse(document.getElementById('questions-data').textContent);
+    const types = JSON.parse(document.getElementById('types-data').textContent);
 
     this.setState({
       questions,
+      types,
       questionsLoaded: true,
     });
   }
@@ -71,7 +75,8 @@ class App extends Component {
   scrollToNext() {
     const nextQuestion = this.state.activeQuestion + 1;
 
-    document.getElementById(`q${nextQuestion}`).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(`q${nextQuestion}`)
+      .scrollIntoView({ behavior: 'smooth' });
   }
 
   updateScore(category, value) {
@@ -109,6 +114,23 @@ class App extends Component {
     }
 
     console.log(scoreSorted);
+    console.log(this.state.types);
+  }
+
+  showTypeCopy(event, type) {
+    const a = document.getElementById(`${type}-show`);
+
+    event.preventDefault();
+
+    document.getElementById(`${type}-copy`).classList.toggle('shown');
+
+    if (a.innerHTML === 'Read more »') {
+      a.innerHTML = 'Read less »';
+    } else {
+      a.innerHTML = 'Read more »';
+    }
+
+    console.log(a);
   }
 
   render() {
@@ -134,37 +156,44 @@ class App extends Component {
         />
       );
     const complete = this.state.complete;
-    let userType = null;
-    let typeDesc = null;
+    let userTypeHeading = null;
+    let userTypeSubhead = null;
+    let userTypeCopy = null;
     let results = null;
 
     switch (true) {
-      case this.state.result === 'fitbit':
-        userType = 'the ‘Fitbit financier’';
-        typeDesc = 'Go on, admit it. You track your spending, investments and pension about as often as someone training for an extreme sporting event measures their calorie intake, resting heart rate and sleep quality. You like to use comparison sites, consider some people on money discussion forums to have become your friends friends, and like to download apps that help you understand financial products and remind you when to remortgage. Keeping track of one’s money is a good thing. But one underlying reason for wanting very strong control of your finances is that you may have lost control of other areas of your life. Perhaps you are facing something unpredictable, like a job move or retirement?'; // eslint-disable-line
-        break;
       case this.state.result === 'anxious':
-        userType = 'the ‘anxious investor’';
-        typeDesc = 'You check or change your investments several times a month. Quite possibly most days. The anticipation of making a trade or checking your portfolio boosts your mood, although after it is executed you are anxious about what the results will be. According to behavioural finance expert Greg B. Davies, that is a brain chemistry loop that keeps amateur investors trading through periods when they really should have bought and held. Some move on to chasing the highs and suffering the lows of leveraged spread betting. Mr Davies observes that many DIY investors believe they are better than the average. However, they often have no idea how their portfolio is doing compared to an accepted benchmark, or even what this benchmark should be. If you fear this is you, see a financial adviser or chartered financial planner for a portfolio MOT.'; // eslint-disable-line
-        break;
-      case this.state.result === 'social':
-        userType = 'the ‘social value spender’';
-        typeDesc = 'Ever had a row with a loved one that you felt better about after buying them a gift? Do you shop online when you feel lonely? If so, you may be what psychologists call a social value spender. You use money as a tool to make yourself feel better. The extreme manifestation of this behaviour is shopping addiction, where sufferers may have unopened packages hidden under beds and in toilet cisterns, or simply put their purchases on eBay straight away. At the moderate end of the spectrum, you may find yourself lured by retail advertising tactics that link consumption of small, luxury items to a mood boost. Scented candle, anyone?'; // eslint-disable-line
-        break;
-      case this.state.result === 'cash':
-        userType = 'the ‘cash splasher’';
-        typeDesc = 'Do you always get the bill? More importantly, do you always get the bill while making it clear to others that you were then one who paid? Cash splashers view themselves as generous, but they also use money to show people that they have achieved enough success in life for spending freely on others not to make a dent. They may also spend on items or commitments that they could easily do without, from club memberships to expensive cars, to show others that they have done well. It is always nice to be a bit of a splasher, but do keep it in check.'; // eslint-disable-line
+        userTypeHeading = this.state.types[0].heading;
+        userTypeSubhead = this.state.types[0].subhead;
+        userTypeCopy = this.state.types[0].copy;
         break;
       case this.state.result === 'hoarder':
-        userType = 'the ‘hoarder’';
-        typeDesc = 'To you, money represents security. You like to see enormous piles of it in your bank account. You are uncomfortable with investing because moves money out of sight and into that unknown dimension known as “the markets”, where it could lose value. You find shopping horrid. If you are married, you will question your spouse’s spending. If you have teenage children, you also have a wardrobe of clothes that are older than them. In a divorce, you may fight for more of the spoils than you need, for fear of being left short. And if you retire comfortably, you will still deny yourself luxuries, perhaps while also fretting uncontrollably about inheritance tax. If you find yourself hoarding beyond what is necessary, try and recalibrate how you conceptualise money. It is not tangible, but abstract. It has been variously described as the future promise of having something, a legal obligation or simply a unit of measurement. So if you do not use it, it may as well not exist.'; // eslint-disable-line
+        userTypeHeading = this.state.types[1].heading;
+        userTypeSubhead = this.state.types[1].subhead;
+        userTypeCopy = this.state.types[1].copy;
+        break;
+      case this.state.result === 'social':
+        userTypeHeading = this.state.types[2].heading;
+        userTypeSubhead = this.state.types[2].subhead;
+        userTypeCopy = this.state.types[2].copy;
+        break;
+      case this.state.result === 'cash':
+        userTypeHeading = this.state.types[3].heading;
+        userTypeSubhead = this.state.types[3].subhead;
+        userTypeCopy = this.state.types[3].copy;
         break;
       case this.state.result === 'ostrich':
-        userType = 'the ‘ostrich’';
-        typeDesc = 'Money? Yawn. You hate opening bills. Pensions and Isas are dull. Quite possibly you once paid a monthly direct debit for a washing machine that was installed in your student house, before canceling it a decade later. At the root of your inactivity is anxiety. You see yourself as innately bad with numbers. So you fear that making any decision about money could be worse than doing nothing. It is not a rational fear. The good news is that, if you have taken this test, which involves thinking about money, you are not an incurable ostrich. Set aside an hour a fortnight, at first, to examine your finances. It will get easier with time.'; // eslint-disable-line
+        userTypeHeading = this.state.types[4].heading;
+        userTypeSubhead = this.state.types[4].subhead;
+        userTypeCopy = this.state.types[4].copy;
+        break;
+      case this.state.result === 'fitbit':
+        userTypeHeading = this.state.types[5].heading;
+        userTypeSubhead = this.state.types[5].subhead;
+        userTypeCopy = this.state.types[5].copy;
         break;
       default:
-        userType = 'calculating…';
+        userTypeHeading = 'calculating…';
     }
 
     if (complete) {
@@ -172,9 +201,11 @@ class App extends Component {
         <div className="results">
           {!this.state.tie &&
             <div>
-              <h2>Your financial personality type: {userType}</h2>
+              <h2>Your financial personality type: {userTypeHeading}</h2>
 
-              <p>{typeDesc}</p>
+              <p>{userTypeSubhead}</p>
+
+              <div dangerouslySetInnerHTML={{ __html: userTypeCopy }} />
             </div>
           }
 
@@ -189,18 +220,71 @@ class App extends Component {
 
           <p>TKTK chart TKTK</p>
 
-          {!this.state.tie &&
-            <a
-              href={`https://twitter.com/intent/tweet?text=How%20well%20do%20you%20really%20know%20your%20country%3F%20My%20${this.state.country}%20rating%20was%20${Math.round(this.state.score)}%25%3B%20see%20how%20you%20compare%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fperils-of-perception%2F2016%2F&via=FT`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button
-                className="o-buttons o-buttons--big o-buttons--standout"
+          {!this.state.tie && this.state.result &&
+            <div>
+              {this.state.types
+                .filter(type => type.typename !== this.state.result)
+                .map((type, i) =>
+                  <div key={`type${i}`}>
+                    <h2>{type.heading}</h2>
+
+                    <p>{type.subhead}</p>
+
+                    <div
+                      className="type-copy"
+                      id={`${type.typename}-copy`}
+                      dangerouslySetInnerHTML={{ __html: type.copy }}
+                    />
+
+                    <a
+                      href={undefined}
+                      onClick={event => this.showTypeCopy(event, type.typename)}
+                      id={`${type.typename}-show`}
+                    >
+                      Read more »
+                    </a>
+                  </div>
+                )
+              }
+
+              <a
+                href={`https://twitter.com/intent/tweet?text=How%20well%20do%20you%20really%20know%20your%20country%3F%20My%20${this.state.country}%20rating%20was%20${Math.round(this.state.score)}%25%3B%20see%20how%20you%20compare%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fperils-of-perception%2F2016%2F&via=FT`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Tweet Your Result
-              </button>
-            </a>
+                <button className="o-buttons o-buttons--big o-buttons--standout">
+                  Tweet Your Result
+                </button>
+              </a>
+            </div>
+          }
+
+          {this.state.tie &&
+            <div>
+              {this.state.types
+                .map((type, i) =>
+                  <div key={`type${i}`}>
+                    <h2>{type.heading}</h2>
+
+                    <p>{type.subhead}</p>
+
+                    <div
+                      className="type-copy"
+                      id={`${type.typename}-copy`}
+                      dangerouslySetInnerHTML={{ __html: type.copy }}
+                    />
+
+                    <a
+                      href={undefined}
+                      onClick={event => this.showTypeCopy(event, type.typename)}
+                      id={`${type.typename}-show`}
+                    >
+                      Read more »
+                    </a>
+                  </div>
+                )
+              }
+            </div>
           }
         </div>
       );

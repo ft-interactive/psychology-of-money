@@ -11,4 +11,10 @@ div.results {
     max-width: 315px;
     margin: 38px auto 0;
   }
+  .type-copy {
+    display: none;
+    &.shown {
+      display: block;
+    }
+  }
 }

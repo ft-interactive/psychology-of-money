@@ -64,6 +64,7 @@
 {%- endif -%}
 
 {{ questions | jsonScriptElement('questions-data') }}
+{{ types | jsonScriptElement('types-data') }}
 
 <title>{{ title | default(headline, true) }} &mdash; FT.com</title>
 <meta name="twitter:title" content="{{ twitterHeadline | default(socialHeadline) | default(headline, true) }}">
