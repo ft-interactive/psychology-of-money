@@ -122,10 +122,10 @@ class App extends Component {
 
     event.preventDefault();
 
-    document.getElementById(`${type}-copy`).classList.toggle('shown');
+    document.getElementById(`${type}-copy`).classList.toggle('unhide');
 
     if (a.innerHTML === 'Read more »') {
-      a.innerHTML = 'Read less »';
+      a.innerHTML = '« Read less';
     } else {
       a.innerHTML = 'Read more »';
     }
@@ -226,7 +226,9 @@ class App extends Component {
                   <div key={`type${i}`}>
                     <h2>{type.heading}</h2>
 
-                    <p>{type.subhead}</p>
+                    <p>
+                      <span className="o-typography-lead">{type.subhead}</span>
+                    </p>
 
                     <div
                       className="type-copy"
@@ -264,7 +266,9 @@ class App extends Component {
                   <div key={`type${i}`}>
                     <h2>{type.heading}</h2>
 
-                    <p>{type.subhead}</p>
+                    <p>
+                      <span className="o-typography-lead">{type.subhead}</span>
+                    </p>
 
                     <div
                       className="type-copy"
