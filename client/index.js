@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import update from 'immutability-helper';
 import _ from 'lodash';
 import Question from './components/question';
+import SpineChart from './components/results/spine-chart';
 
 require('smoothscroll-polyfill').polyfill();
 
@@ -21,12 +22,12 @@ class App extends Component {
       questionsLoaded: false,
       activeQuestion: 0,
       score: [
-        { category: 'fitbit', value: 0 },
         { category: 'anxious', value: 0 },
-        { category: 'social', value: 0 },
         { category: 'cash', value: 0 },
+        { category: 'fitbit', value: 0 },
         { category: 'hoarder', value: 0 },
         { category: 'ostrich', value: 0 },
+        { category: 'social', value: 0 },
       ],
       complete: false,
       tie: false,
@@ -216,7 +217,13 @@ class App extends Component {
             </div>
           }
 
-          <p>TKTK chart TKTK</p>
+          <SpineChart
+            data={this.state.score}
+            initialWidth={this.node.offsetWidth}
+            inputMin={-3}
+            inputMax={3}
+            userAnswer={this.state.result}
+          />
 
           {!this.state.tie && this.state.result &&
             <div>
@@ -299,7 +306,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div ref={node => { this.node = node; }}>
         <link
           rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons@^4.4.1"
         />

@@ -1,0 +1,52 @@
+$axis-color: #c3bcb0;
+$tick-label-color: #6b6e68;
+$distribution-color: #cec6b9;
+$user-color: #26747a;
+$actual-color: #09a25c;
+$country-color: #ff7f8a;
+
+svg.column-chart {
+  align-self: flex-start;
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: $axis-color;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+  }
+  .y.axis line {
+    stroke-width: 1;
+    stroke-dasharray: 1, 2;
+  }
+  text {
+    font-size: 18px;
+    font-weight: 400;
+    fill: $tick-label-color;
+  }
+  .bar {
+    shape-rendering: geometricPrecision;
+    .diverging-r {
+      fill: #af516c;
+    }
+    .diverging-l {
+      fill: #76acb8;
+    }
+  }
+}
+
+div.legend {
+  display: flex;
+  align-items: center;
+  .legend-actual {
+    fill: $actual-color;
+  }
+  .legend-user {
+    fill: #26747a;
+  }
+  .legend-country {
+    fill: #ff7f8a;
+  }
+  p.o-typography-lead--small {
+    margin: 0.3em 0 0.3em 7px;
+  }
+}

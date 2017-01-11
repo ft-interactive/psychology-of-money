@@ -89,10 +89,12 @@
     "test": "npm run lint && npm run build"
   },
   "dependencies": {
+    "d3": "^3.5.17",
     "immutability-helper": "^2.1.0",
     "lodash": "^4.17.3",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-faux-dom": "^3.0.0",
     "smoothscroll-polyfill": "^0.3.4"
   }
 }
