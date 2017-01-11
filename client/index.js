@@ -83,12 +83,12 @@ class App extends Component {
   updateScore(category, value) {
     const prevScore = this.state.score;
     const categoryLookup = [
-      'fitbit',
       'anxious',
-      'social',
       'cash',
+      'fitbit',
       'hoarder',
       'ostrich',
+      'social',
     ];
     const categoryIndex = categoryLookup.indexOf(category);
     const updatedScore = update(prevScore, {
@@ -166,17 +166,17 @@ class App extends Component {
         userTypeSubhead = this.state.types[0].subhead;
         userTypeCopy = this.state.types[0].copy;
         break;
-      case this.state.result === 'hoarder':
+      case this.state.result === 'cash':
         userTypeHeading = this.state.types[1].heading;
         userTypeSubhead = this.state.types[1].subhead;
         userTypeCopy = this.state.types[1].copy;
         break;
-      case this.state.result === 'social':
+      case this.state.result === 'fitbit':
         userTypeHeading = this.state.types[2].heading;
         userTypeSubhead = this.state.types[2].subhead;
         userTypeCopy = this.state.types[2].copy;
         break;
-      case this.state.result === 'cash':
+      case this.state.result === 'hoarder':
         userTypeHeading = this.state.types[3].heading;
         userTypeSubhead = this.state.types[3].subhead;
         userTypeCopy = this.state.types[3].copy;
@@ -186,7 +186,7 @@ class App extends Component {
         userTypeSubhead = this.state.types[4].subhead;
         userTypeCopy = this.state.types[4].copy;
         break;
-      case this.state.result === 'fitbit':
+      case this.state.result === 'social':
         userTypeHeading = this.state.types[5].heading;
         userTypeSubhead = this.state.types[5].subhead;
         userTypeCopy = this.state.types[5].copy;
@@ -202,31 +202,46 @@ class App extends Component {
             <div>
               <h2>Your financial personality type: {userTypeHeading}</h2>
 
-              <p>{userTypeSubhead}</p>
-
-              <div dangerouslySetInnerHTML={{ __html: userTypeCopy }} />
+              <p>
+                <span className="o-typography-lead">{userTypeSubhead}</span>
+              </p>
             </div>
           }
 
           {this.state.tie &&
             <div>
               <h2>Your financial personality type: inconclusive</h2>
-
-              <p>Check the chart below to see how you rated against each of the
-                different financial personality types.</p>
             </div>
           }
 
-          <SpineChart
-            data={this.state.score}
-            initialWidth={this.node.offsetWidth}
-            inputMin={-3}
-            inputMax={3}
-            userAnswer={this.state.result}
-          />
-
           {!this.state.tie && this.state.result &&
             <div>
+              <figure className="graphic graphic-b-1 graphic-pad-1">
+                <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${this.state.result}.jpg?source=ig&width=700`} />
+
+                <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
+              </figure>
+
+              <div dangerouslySetInnerHTML={{ __html: userTypeCopy }} />
+
+              <SpineChart
+                data={this.state.score}
+                initialWidth={this.node.offsetWidth}
+                inputMin={-3}
+                inputMax={3}
+                userAnswer={this.state.result}
+              />
+
+              <a
+                href={`https://twitter.com/intent/tweet?text=My%20financial%20personality%20type%20is%20${userTypeHeading}.%20Find%20out%20your%20own%20with%20this%20%40FT%20quiz%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fpsychology-of-money%2F&via=FT`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="o-buttons o-buttons--big o-buttons--standout">
+                  Tweet Your Result
+                </button>
+              </a>
+
               {this.state.types
                 .filter(type => type.typename !== this.state.result)
                 .map((type, i) =>
@@ -236,6 +251,12 @@ class App extends Component {
                     <p>
                       <span className="o-typography-lead">{type.subhead}</span>
                     </p>
+
+                    <figure className="graphic graphic-b-1 graphic-pad-1">
+                      <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
+
+                      <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
+                    </figure>
 
                     <div
                       className="type-copy"
@@ -253,21 +274,25 @@ class App extends Component {
                   </div>
                 )
               }
-
-              <a
-                href={`https://twitter.com/intent/tweet?text=How%20well%20do%20you%20really%20know%20your%20country%3F%20My%20${this.state.country}%20rating%20was%20${Math.round(this.state.score)}%25%3B%20see%20how%20you%20compare%3A&url=https%3A%2F%2Fig.ft.com%2Fsites%2Fquiz%2Fperils-of-perception%2F2016%2F&via=FT`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="o-buttons o-buttons--big o-buttons--standout">
-                  Tweet Your Result
-                </button>
-              </a>
             </div>
           }
 
           {this.state.tie &&
             <div>
+              <p>
+                <span className="o-typography-lead">
+                  Check the chart below to see how you rated against each of the different financial personality types
+                </span>
+              </p>
+
+              <SpineChart
+                data={this.state.score}
+                initialWidth={this.node.offsetWidth}
+                inputMin={-3}
+                inputMax={3}
+                userAnswer={this.state.result}
+              />
+
               {this.state.types
                 .map((type, i) =>
                   <div key={`type${i}`}>
@@ -276,6 +301,12 @@ class App extends Component {
                     <p>
                       <span className="o-typography-lead">{type.subhead}</span>
                     </p>
+
+                    <figure className="graphic graphic-b-1 graphic-pad-1">
+                      <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
+
+                      <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
+                    </figure>
 
                     <div
                       className="type-copy"

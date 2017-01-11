@@ -129,7 +129,7 @@ class SpineChart extends Component {
         .duration(500)
         .attr('height', height + margin.top + margin.bottom);
     rect.transition()
-        .ease('cubic-out')
+        .ease('elastic')
         .delay((d, i) => 500 + (i * 7.5))
         .duration(500)
         .attr('x', d => {
