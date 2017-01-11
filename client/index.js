@@ -281,7 +281,7 @@ class App extends Component {
             <div>
               <p>
                 <span className="o-typography-lead">
-                  Check the chart below to see how you rated against each of the different financial personality types
+                  Check the chart below to see how you rated against each financial personality type
                 </span>
               </p>
 

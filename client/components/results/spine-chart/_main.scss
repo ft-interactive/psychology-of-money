@@ -11,12 +11,17 @@ svg.column-chart {
     stroke-width: 2;
     shape-rendering: crispEdges;
   }
-  .y.axis line {
-    stroke-width: 1;
-    stroke-dasharray: 1, 2;
+  .y.axis {
+    line {
+      stroke-width: 1;
+      stroke-dasharray: 1, 2;
+    }
+    .tick text {
+      // text-shadow: 0 0 2px #505050;
+    }
   }
   text {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     fill: $tick-label-color;
   }

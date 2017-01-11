@@ -114,7 +114,13 @@ class SpineChart extends Component {
       .selectAll('.tick text')
         .attr('x', (width / 2) * -1)
         .style('text-anchor', 'end')
-        .attr('transform', 'translate(145, 0)');
+        .attr('transform', () => {
+          if (width < 585) {
+            return 'translate(119, 0)';
+          }
+
+          return 'translate(145, 0)';
+        });
 
     svg.select('.y')
       .append('text')
@@ -208,7 +214,13 @@ class SpineChart extends Component {
       .selectAll('.tick text')
         .attr('x', (width / 2) * -1)
         .style('text-anchor', 'end')
-        .attr('transform', 'translate(145, 0)');
+        .attr('transform', () => {
+          if (width < 585) {
+            return 'translate(119, 0)';
+          }
+
+          return 'translate(145, 0)';
+        });
 
     svg.select('.y.axis.label')
         .attr('x', width / 2)
