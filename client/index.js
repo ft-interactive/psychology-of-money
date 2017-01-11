@@ -114,8 +114,8 @@ class App extends Component {
       });
     }
 
-    console.log(scoreSorted);
-    console.log(this.state.types);
+    // console.log(scoreSorted);
+    // console.log(this.state.types);
   }
 
   showTypeCopy(event, type) {
