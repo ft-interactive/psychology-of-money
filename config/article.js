@@ -14,7 +14,7 @@ export default () => ({ // eslint-disable-line
   headline: 'Anxious investor or cash-spending gambler? Take our money psychology quiz',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Do you online shop when you feel lonely, or are you constantly worried about money? Find out what your financial behaviour says about you',
+  summary: 'Do you shop online when you feel lonely, or are you constantly worried about money? Find out what your financial behaviour says about you',
 
   topic: {
     name: 'Managing Yourself',

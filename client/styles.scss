@@ -11,12 +11,46 @@ div.results {
     width: 100%;
     max-width: 315px;
     margin-right: auto;
+    margin-bottom: 20px;
     margin-left: auto;
   }
-  .type-copy {
+  div.type-container {
+    // display: inline-block;
+    margin-bottom: 20px;
+    .thumbnail-container {
+      // display: inline-block;
+      // float: left;
+      // width: 30%;
+    }
+    .heading-container {
+      // display: inline-block;
+      // box-sizing: border-box;
+      // float: right;
+      // width: 70%;
+      // padding-left: 10px;
+      h2 {
+        margin-top: 0;
+      }
+    }
+    .spacer {
+      // display: inline-block;
+      // float: left;
+      // width: 30%;
+      height: 18px;
+    }
+    .read-more-container {
+      // display: inline-block;
+      width: 100%;
+      // a {
+      //   display: inline-block;
+      //   margin-left: 10px;
+      // }
+    }
+  }
+  div.type-copy {
     display: none;
     &.unhide {
-      display: block;
+      display: inline-block;
     }
   }
 }

@@ -246,31 +246,44 @@ class App extends Component {
                 .filter(type => type.typename !== this.state.result)
                 .map((type, i) =>
                   <div key={`type${i}`}>
-                    <h2>{type.heading}</h2>
+                    <div className="type-container o-grid-row">
+                      <div className="thumbnail-container" data-o-grid-colspan="12 S11 Scenter M4">
+                        <figure className="graphic graphic-b-1 graphic-pad-1">
+                          <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
 
-                    <p>
-                      <span className="o-typography-lead">{type.subhead}</span>
-                    </p>
+                          <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
+                        </figure>
+                      </div>
 
-                    <figure className="graphic graphic-b-1 graphic-pad-1">
-                      <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
+                      <div className="heading-container" data-o-grid-colspan="12 S11 M8">
+                        <h2>{type.heading}</h2>
 
-                      <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
-                    </figure>
+                        <p>
+                          <span className="o-typography-lead">{type.subhead}</span>
+                        </p>
+                      </div>
 
-                    <div
-                      className="type-copy"
-                      id={`${type.typename}-copy`}
-                      dangerouslySetInnerHTML={{ __html: type.copy }}
-                    />
+                      <div
+                        className="type-copy"
+                        id={`${type.typename}-copy`}
+                        dangerouslySetInnerHTML={{ __html: type.copy }}
+                        data-o-grid-colspan="12"
+                      />
 
-                    <a
-                      href={undefined}
-                      onClick={event => this.showTypeCopy(event, type.typename)}
-                      id={`${type.typename}-show`}
-                    >
-                      Read more »
-                    </a>
+                      <div className="read-more-container">
+                        <div className="spacer" data-o-grid-colspan="hide M4"/>
+
+                        <div data-o-grid-colspan="12 S11 M8">
+                          <a
+                            href={undefined}
+                            onClick={event => this.showTypeCopy(event, type.typename)}
+                            id={`${type.typename}-show`}
+                          >
+                            Read more »
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               }
@@ -296,31 +309,44 @@ class App extends Component {
               {this.state.types
                 .map((type, i) =>
                   <div key={`type${i}`}>
-                    <h2>{type.heading}</h2>
+                    <div className="type-container o-grid-row">
+                      <div className="thumbnail-container" data-o-grid-colspan="12 S11 Scenter M4">
+                        <figure className="graphic graphic-b-1 graphic-pad-1">
+                          <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
 
-                    <p>
-                      <span className="o-typography-lead">{type.subhead}</span>
-                    </p>
+                          <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
+                        </figure>
+                      </div>
 
-                    <figure className="graphic graphic-b-1 graphic-pad-1">
-                      <img alt="" src={`https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fig.ft.com%2Fstatic%2Fpsychology-of-money%2F${type.typename}.jpg?source=ig&width=700`} />
+                      <div className="heading-container" data-o-grid-colspan="12 S11 M8">
+                        <h2>{type.heading}</h2>
 
-                      <figcaption className="o-typography-caption">&#xA9;&nbsp;FT/Leon Edler</figcaption>
-                    </figure>
+                        <p>
+                          <span className="o-typography-lead">{type.subhead}</span>
+                        </p>
+                      </div>
 
-                    <div
-                      className="type-copy"
-                      id={`${type.typename}-copy`}
-                      dangerouslySetInnerHTML={{ __html: type.copy }}
-                    />
+                      <div
+                        className="type-copy"
+                        id={`${type.typename}-copy`}
+                        dangerouslySetInnerHTML={{ __html: type.copy }}
+                        data-o-grid-colspan="12"
+                      />
 
-                    <a
-                      href={undefined}
-                      onClick={event => this.showTypeCopy(event, type.typename)}
-                      id={`${type.typename}-show`}
-                    >
-                      Read more »
-                    </a>
+                      <div className="read-more-container">
+                        <div className="spacer" data-o-grid-colspan="hide M4"/>
+
+                        <div data-o-grid-colspan="12 S11 M8">
+                          <a
+                            href={undefined}
+                            onClick={event => this.showTypeCopy(event, type.typename)}
+                            id={`${type.typename}-show`}
+                          >
+                            Read more »
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               }

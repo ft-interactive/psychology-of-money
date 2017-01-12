@@ -61,7 +61,12 @@ class SpineChart extends Component {
         .scale(x)
         .orient('bottom')
         .ticks(5)
-        .tickFormat(d => `${d}%`);
+        .innerTickSize(0)
+        .tickFormat((d, i) => {
+          const text = ['', '< Less like', 'Neutral', 'More like >', ''];
+
+          return text[i];
+        });
     const yAxis = d3.svg
         .axis()
         .scale(y)
@@ -128,7 +133,7 @@ class SpineChart extends Component {
         .attr('x', width / 2)
         .attr('y', margin.top)
         .style('text-anchor', 'end')
-        .text('Your rating (per cent)');
+        .text('How you rated');
 
     // Set up on-render transitions
     svg.transition()
@@ -180,7 +185,12 @@ class SpineChart extends Component {
         .scale(x)
         .orient('bottom')
         .ticks(5)
-        .tickFormat(d => `${d}%`);
+        .innerTickSize(0)
+        .tickFormat((d, i) => {
+          const text = ['', '< Less like', 'Neutral', 'More like >', ''];
+
+          return text[i];
+        });
     const yAxis = d3.svg
         .axis()
         .scale(y)
