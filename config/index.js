@@ -1,6 +1,8 @@
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
+import questions from './questions';
+import types from './types';
 
 export default async function() {
   const d = await article();
@@ -32,5 +34,7 @@ export default async function() {
     ...d,
     flags,
     onwardJourney,
+    questions,
+    types,
   };
 }

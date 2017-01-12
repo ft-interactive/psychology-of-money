@@ -1,16 +1,56 @@
 @import 'o-colors/main';
 @import 'components/core/main';
+@import 'components/question/main';
+@import 'components/question/inputs/range/main';
+@import 'components/results/spine-chart/main';
 
-/*
-      TODO: delete this comment
-
-      Write your code here - keep it neat!
-      Split logical parts of you project into components e.g.
-
-      /client
-        - /components
-            - /component-name
-                - styles.scss
-                - index.js
-                - template.html
-*/
+div.results {
+  margin: 1em auto;
+  button {
+    display: block;
+    width: 100%;
+    max-width: 315px;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-left: auto;
+  }
+  div.type-container {
+    // display: inline-block;
+    margin-bottom: 20px;
+    .thumbnail-container {
+      // display: inline-block;
+      // float: left;
+      // width: 30%;
+    }
+    .heading-container {
+      // display: inline-block;
+      // box-sizing: border-box;
+      // float: right;
+      // width: 70%;
+      // padding-left: 10px;
+      h2 {
+        margin-top: 0;
+      }
+    }
+    .spacer {
+      // display: inline-block;
+      // float: left;
+      // width: 30%;
+      height: 18px;
+    }
+    .read-more-container {
+      // display: inline-block;
+      width: 100%;
+      // a {
+      //   display: inline-block;
+      //   margin-left: 10px;
+      // }
+    }
+  }
+  div.type-copy {
+    display: none;
+    &.unhide {
+      display: inline-block;
+    }
+  }
+}
