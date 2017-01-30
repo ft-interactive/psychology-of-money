@@ -108,10 +108,14 @@ class App extends Component {
       this.setState({
         tie: true,
       });
+
+      window.ga('send', 'event', 'Results', 'Tie', 'Tie');
     } else {
       this.setState({
         result: scoreSorted[5].category,
       });
+
+      window.ga('send', 'event', 'Results', 'Type', `${scoreSorted[5].category}`);
     }
 
     // console.log(scoreSorted);
