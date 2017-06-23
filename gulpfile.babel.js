@@ -216,7 +216,7 @@ gulp.task('html', () =>
     .pipe(htmlmin({
       collapseWhitespace: true,
       processConditionalComments: true,
-      minifyJS: true,
+      minifyJS: false,
     }))
     .pipe(gulp.dest('dist'))
 );
